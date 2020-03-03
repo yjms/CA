@@ -1,0 +1,295 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.10.0",
+	"appid": "wx9cb717d8151d8486",
+	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E5%A7%8B%E6%A8%A1%E6%9D%BF%E7%9B%AE%E5%BD%95",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "定位",
+					"pathName": "pages/pages-list/location/location",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/pages-list/poster/poster",
+					"pathName": "pages/pages-list/poster/poster",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "条形码二维码",
+					"pathName": "pages/pages-list/codes/codes",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "海报",
+					"pathName": "pages/pages-list/poster/poster",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日历",
+					"pathName": "pages/pages-list/calendar/calendar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "html解析",
+					"pathName": "pages/pages-list/html/html",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pages-list/map/qqmap/qqmap",
+					"pathName": "pages/pages-list/map/qqmap/qqmap",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "components/gesture/gesture",
+					"pathName": "components/gesture/gesture",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "websocket",
+					"pathName": "pages/pages-list/websocket/websocket",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "AR",
+					"pathName": "pages/pages-list/ar/ar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "图片验证码",
+					"pathName": "pages/pages-list/img-code/img-code",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "pages/pages-list/computed-watch/computed-watch",
+					"pathName": "pages/pages-list/computed-watch/computed-watch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "我的地图",
+					"pathName": "pages/pages-list/map/my-map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "登录",
+					"pathName": "pages/pages-list/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "中英文",
+					"pathName": "pages/pages-list/ch-en/ch-en",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "自定义nav和tabbar",
+					"pathName": "pages/pages-list/custom/custom",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "3d轮播",
+					"pathName": "pages/pages-list/swiper3d/swiper3d",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "测试页面",
+					"pathName": "pages/pages-list/test/test",
+					"query": "",
+					"scene": 1011
+				},
+				{
+					"id": 18,
+					"name": "手写签名",
+					"pathName": "pages/pages-list/handwriting/handwriting",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "机器人",
+					"pathName": "pages/pages-list/robot/robot",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "全景",
+					"pathName": "pages/pages-list/panorama/panorama",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "单地图",
+					"pathName": "pages/maps/maps",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "图片裁剪",
+					"pathName": "pages/pages-list/cropper/cropper",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "bar",
+					"pathName": "pages/pages-list/wx-charts/bar/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "刮刮乐",
+					"pathName": "pages/pages-list/prize/scrape/scrape",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "图表",
+					"pathName": "pages/pages-list/wx-charts/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试2",
+					"pathName": "pages/pages-list/test/test2",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "滑动删除",
+					"pathName": "pages/pages-list/sliding-del/sliding-del",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "抛物线动画",
+					"pathName": "pages/pages-list/parabola/parabola",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/pages-list/authorize/authorize",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "takeDel",
+					"pathName": "pages/take/takeDel",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "dealers",
+					"pathName": "pages/dealers/dealers",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "takeHome",
+					"pathName": "pages/takeHome/takeHome",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/take/takeDel",
+		"pages/dealers/dealers",
+		"pages/takeHome/takeHome"
+	],
+	"window": {
+		"navigationBarTitleText": "企业微信",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTextStyle": "black",
+		"enablePullDownRefresh": false
+	},
+	"navigateToMiniProgramAppIdList": [
+		"wx5f891ae8337b8324",
+		"wx9db2c16d0633c2e7"
+	],
+	"sitemapLocation": "sitemap.json",
+	"plugins": {
+		"chatbot": {
+			"version": "1.1.4",
+			"provider": "wx8c631f7e9f2465e1"
+		},
+		"WechatSI": {
+			"version": "0.3.2",
+			"provider": "wx069ba97219f66d99"
+		},
+		"wxPano": {
+			"version": "1.4.4",
+			"provider": "wx386c038238531f87"
+		}
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序位置接口的效果展示"
+		}
+	},
+	"networkTimeout": {
+		"request": 10000,
+		"downloadFile": 10000
+	},
+	"requiredBackgroundModes": [
+		"audio"
+	]
+}
