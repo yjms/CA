@@ -1,10 +1,14 @@
   <view class="list">
-    <view class="items" wx:for="{{1}}" wx:key="l">
-	  <view class="leftimg" style="background-image:url({{BASEURL}}/test.png)"></view>
+
+    <view class="items" wx:for="{{infoList}}" wx:key="l" bindtap="takeDel" data-obj="{{item}}">
+	  <view class="leftimg" style="background-image:url({{item.client_avatar}})">
+	  	 <view class="nums" wx:if="{{item.num>0}}">{{item.num}}</view>
+	  </view>
 	  <view class="rightinfo">
-	  	<text class="usename nowrap">草莓果酱草莓果酱草莓果酱草莓果酱草莓果酱草莓果酱草莓果酱草莓果酱</text>
-		<text class="useinfo nowrap">[图片]</text>
-		<text class="asstime">下午5:02</text>
+	  	<text class="usename nowrap">{{item.client_nickname}}</text>
+		<text class="useinfo nowrap">{{item.msg_type==1?item.content:'[图片]'}}</text>
+		<text class="asstime">{{item.createtime}}</text>
 	  </view>
 	</view>
+	
   </view>

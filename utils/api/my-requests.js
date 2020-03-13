@@ -1,5 +1,5 @@
 import $ from './request.js'
-const QQMapWX = require('../../utils/map/qqmap-wx-jssdk.min.js');
+const QQMapWX = require('../map/qqmap-wx-jssdk.min.js');
 const REQUESTURL = getApp().globalData.REQUESTURL
 const myRequest = (data, url, type = 'post', isUrl = false) => {
   !isUrl && (url = `${REQUESTURL}${url}`)
@@ -27,20 +27,67 @@ const clientLogin = (data, url = '/index/index/clientLogin') => { return myReque
 // 获取专营店信息 
 const getInfo = (data, url = '/index/index/getInfo') => { return myRequest(data, url) }
 //获取地理位置
+
 const getPosition = () => {
 	return new Promise((resolve, reject) => {
 		let qqmapsdk = new QQMapWX({ key: 'GW3BZ-NMN6J-JSEFT-FTC6R-F7DA3-Z3FVJ' });
 		qqmapsdk.reverseGeocoder({
 			success: (res) => {//成功后的回调
-				console.log(res)
 				resolve(res)
 			},
 			fail: function (err) {
 				reject(err)
+				console.log("定位失败333")
 			}
 		})
 	})
 }
+// 获取专营店信息 
+const msgLog = (data, url = '/index/index/msgLog') => { return myRequest(data, url) }
+// 图片上传
+const uploadFiles = (data) => {
+	let url = `${REQUESTURL}/index/index/upload`;
+	return new Promise((resolve, reject) => {
+		wx.chooseImage({
+			success(res) {
+				const tempFilePaths = res.tempFilePaths
+				wx.uploadFile({
+					url: url,
+					filePath: tempFilePaths[0],
+					name: 'file',
+					formData: {},
+					success(res) {
+						const data = res.data
+						resolve(JSON.parse(data))
+					}
+				})
+			},
+			fail(err) {
+				reject(err)
+			}
+		})
+	})
+} 
+// 企业微信 接口
+const getuseid = (data, url = '/index/index/serviceLogin') => { return myRequest(data, url) }
+
+// 企业微信 客服消息记录
+const msgList = (data, url = '/index/index/msgList') => { return myRequest(data, url) }
+
+// 企业微信登录
+const qylogin = ()=>{
+	return new Promise((resolve,reject)=>{
+		wx.qy.login({
+			success: function (rel) {
+				resolve(rel);
+			},fail(err){
+				reject(err);	
+			}
+		})
+	})
+}
+// 清除消息记录 
+const cleaninfo = (data, url = '/index/index/clean') => { return myRequest(data, url) }
 
 module.exports = {
   myRequest,
@@ -52,4 +99,11 @@ module.exports = {
   clientLogin,
   getInfo,
   getPosition,
+  msgLog,
+  uploadFiles,
+  // 企业微信 接口
+  getuseid,
+  qylogin,
+  msgList,
+  cleaninfo,
 }

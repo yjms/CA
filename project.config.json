@@ -32,8 +32,10 @@
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
+	"simulatorType": "qywx_simulator_plugin",
+	"simulatorPluginLibVersion": {
+		"qywx_simulator_plugin": "2.4.0"
+	},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -269,14 +271,14 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 30,
 					"name": "takeDel",
-					"pathName": "pages/take/takeDel",
-					"query": "",
+					"pathName": "pages/take/takeDel/takeDel",
+					"query": "uid=YangLiSong&to_uid=92",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 31,
 					"name": "dealers",
 					"pathName": "pages/dealers/dealers",
 					"query": "",

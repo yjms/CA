@@ -1,0 +1,28 @@
+<view class="whole">
+	<view class="hander">
+		<view class="txt1 nowrap">当前位置：{{address}}</view>
+		<view class="relocation">
+			<image mode="widthFix" src="{{BASEURL}}/relocation.png" class="relocat"></image>
+			<text class="txt2" bindtap="resetpot">重新定位</text>
+		</view>
+	</view>
+	<view class="tackitem">
+		<view class="deList" wx:for="{{storlist}}" wx:key="l" bindtap="goback" data-obj="{{item}}">
+			<view class="leftimg" style="background-image:url({{item.avatar}})"></view>
+			<view class="rightinfo">
+				<view class="row1">
+					<text class="txt3">{{item.store}}</text>
+					<view class="yy_btn">营业中</view>
+				</view>
+				<view class="row2">
+					<text class="txt4">电话：{{item.service_tel?item.service_tel:'暂无'}}</text>
+					<text class="txt4">{{item.distance}}米</text>
+				</view>
+				<view class="row3">
+					<text class="txt5">地址：{{item.address}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>

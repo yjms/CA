@@ -4,7 +4,7 @@
 		<view class="row1">
 			<view class="useinfo">
 				<view class="useimg" style="background-image:url({{useData.avatar}})">
-					<button open-type="getUserInfo" class="sqbtn" bindgetuserinfo="authBtn"></button>
+					
 				</view>
 				<view class="riginfo">
 					<view class="l_name">
@@ -22,25 +22,25 @@
 		<view class="row2">
 			<view class="storinfo">
 
-				<view class="s_row1">
+				<view class="s_row1"  bindtap="storlist">
 					<view class="label">
-						<text class="txt4">广州花都区绿日专营店</text>
+						<text class="txt4">{{useData.store}}</text>
 						<image mode="widthFix" src="{{BASEURL}}/tk_more.png" class="moreicon"></image>
 					</view>
-					<view class="brow">60人浏览</view>
+					<view class="brow">{{useData.num}}人浏览</view>
 				</view>
 
 				<view class="s_row2">
 					<text class="txt5">手机：{{useData.phone}}</text>
-					<view class="rigicon">
+					<view class="rigicon" bindtap="callPhone" data-phone="{{useData.phone}}">
 						<image mode="widthFix" src="{{BASEURL}}/tk_phone.png" class="bigicon"></image>
 						<text class="txt6">拨打</text>
 					</view>
 				</view>
 
 				<view class="s_row2">
-					<text class="txt5">座机：18229829006</text>
-					<view class="rigicon">
+					<text class="txt5">座机：{{useData.service_tel?useData.service_tel:'暂无'}}</text>
+					<view class="rigicon" bindtap="callPhone" data-phone="{{useData.service_tel}}">
 						<image mode="widthFix" src="{{BASEURL}}/tk_phone.png" class="bigicon"></image>
 						<text class="txt6">拨打</text>
 					</view>
@@ -48,7 +48,7 @@
 				
 				<view class="s_row2">
 					<text class="txt5">地址：{{useData.address}}</text>
-					<view class="rigicon rigicon2">
+					<view class="rigicon rigicon2" bindtap="navMap">
 						<image mode="widthFix" src="{{BASEURL}}/tk_locat.png" class="bigicon2"></image>
 						<text class="txt6">导航</text>
 					</view>
@@ -61,8 +61,12 @@
 					</view>
 					<view class="topbtn1" bindtap="takeMan">
 						聊一聊
+						<button wx:if="{{ !userInfo.nickName || !userInfo.unionid }}" open-type="getUserInfo" class="sqbtn"  bindgetuserinfo="getUserInfo"></button>
 					</view>
-					<view class="topbtn1" bindtap="addwx">加微信</view>
+					<view class="topbtn1">
+						加微信
+						<cell styleType="2" class="cell"  bind:startmessage='startmessage' bind:completemessage="completemessage" plugid='{{useData.plugid}}' />
+					</view>
 				</view>
 
 			</view>
@@ -71,7 +75,7 @@
 	<view class="carlabel">所有车系</view>
 	<!-- 车系列表 -->
 	<view class="carlist">
-		<view class="caritem" wx:for="{{carlist}}" wx:key="l">
+		<view class="caritem" wx:for="{{carlist}}" wx:key="l" bindtap="carDel" data-id="{{item.id}}">
 			<view class="carimg" style="background-image:url({{BASEURL+item.img}})"></view>
 			<text class="cartxt nowrap">{{item.txt}}</text>
 		</view>
@@ -84,4 +88,6 @@
 			<view class="copebox" bindtap="copeTxt">点击复制</view>
 		</view>
 	</view>
+	<!-- 强制定位 -->
+	 <showModal showModalOption="{{showModalOption}}" bindoperation="operation"></showModal>
 </view>
