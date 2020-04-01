@@ -13,17 +13,23 @@
 		<!-- 左边文字 -->
 		<view class="leftinfo" wx:if="{{item.is_ob==1&&item.msg_type==1}}">
 			<view class="r_img" style="background-image:url({{item.client_avatar}})"></view>	
-			<view class="l_info l_info2">{{item.content}}</view>
+			<view class="l_info l_info2">
+				{{item.content}}
+			</view>
+			
 		</view>
 		<!-- 右边文字 -->
 		<view class="rightinfo" wx:if="{{item.is_ob==0&&item.msg_type==1}}">
-			<view class="l_info r_info2">{{item.content}}</view>
+			<view class="l_info r_info2">{{item.content}}
+				<!-- <image mode="widthFix" src="{{BASEURL}}/ca_loading.gif" class="loadingicon"></image> -->
+			</view>
 			<view class="r_img" style="background-image:url({{BASEURL}}/test.png)"></view>	
 		</view>
 		<!-- 右边图片 -->
 	    <view class="rightinfo" wx:if="{{item.is_ob==0&&item.msg_type==2}}">
 			<view class="r_info r_info2">
 				<image src="{{item.content}}" mode="widthFix" class="setwidth" bindtap="preview" data-src="{{item.content}}"></image>
+				<!-- <image mode="widthFix" src="{{BASEURL}}/ca_loading.gif" class="loadingicon"></image> -->
 			</view>
 			<view class="l_img" style="background-image:url({{BASEURL}}/test.png)"></view>
 		</view>
@@ -40,16 +46,23 @@
 <!--占位view -->
 <view class="zhanwei"></view>
 <!-- 底部发送消息 -->
-<view class="footbox">
+<view class="footbox {{isIponeX?'setbom':''}}">
 	<view class="l_em">
 		<image src="{{BASEURL}}/icon.png" class="iconimg" mode="widthFix" bindtap="upimg"></image>
 	</view>
 	<view class="c_ipt">
-		<input class="infoipt" bindinput="getval" value="{{msg}}" bindfocus="setscret"></input>
+		<input class="infoipt" bindinput="getval" value="{{msg}}" ></input>
 	</view>
-	<view class="r_send" bindtap="sendMsg">发送</view>
+<form bindsubmit="getFormId" report-submit="true">
+	<button  class="r_send" bindtap="sendMsg" form-type="submit">发送</button>
+</form>
 </view>
+<!-- iphoneX处理 -->
+<view class="{{isIponeX?'ipxbox':''}}"></view>
+
 <view class="imgpop fadeShow" wx:if="{{popshow}}" bindtap="hidepop">
 	<image src="{{BASEURL}}/test.png" class="bigimg"></image>
 </view>
+
+
 

@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "初始目录模板1.6",
+  "navigationBarTitleText": "一呼百应",
   "usingComponents": {
+	"showModal": "/components/showModal/showModal",
     "controls": "/components/audiocontrols/controls",
     "h5Examine": "/components/h5-examine/h5-examine"
   }

@@ -55,21 +55,188 @@ page{
 	color:rgba(153,153,153,1);
 	line-height:40rpx;
 }
+.list{
+	animation: cagtab .3s linear;
+}
 .list>.items:last-child>.rightinfo{
 	border-bottom: 0;
 }
 .nums{
 	padding: 0 5rpx;
-	min-width: 25rpx;
-	height: 30rpx;
+	min-width: 26rpx;
+	height: 32rpx;
 	border-radius:15rpx; 
 	position: absolute;
 	right: -20%;
 	top: -10rpx;
-	background-color:rgba(255,0,0, .8); 
+	background-color:rgba(241,37,37,.8); 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 24rpx;
 	color: white;
+}
+.footTab{
+	width:100vw;
+	height:100rpx;
+	background:rgba(255,255,255,1);
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: flex;
+}
+.f_left,.f_right{
+	width: 50%;
+	box-sizing: border-box;
+	border-right:1rpx solid rgba(220,220,220,1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center; 
+}
+.f_right{
+	border: none;
+}
+.f_icon{
+	font-size: 40rpx;
+	color:rgba(68,68,68,1);
+}
+.f_txt{
+	font-size:22rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(68,68,68,1);
+	line-height:40rpx;
+}
+.active{
+	color:rgba(0,33,107,1);
+}
+/* 名片样式 */
+.cardbox{
+	width: 694rpx;
+	padding: 0 27rpx 41rpx 27rpx;
+	box-sizing: border-box;
+	margin: 0 auto;
+	margin-top: 27rpx;
+	background: rgba(255,255,255,1);
+	border-radius: 10rpx;
+	animation: cagtab2 .3s linear;
+}
+.cd_top{
+	width: 100%;
+	height: 156rpx;
+	border-bottom: 1rpx solid rgba(220,220,220,1);
+	display: flex;
+	align-items: center;
+}
+.c_leftimg{
+	width: 90rpx;
+	height: 90rpx;
+	border-radius: 50%;
+	background: center no-repeat/cover;
+}
+.c_rightinfo{
+	flex: 1;
+	padding-left: 32rpx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-start;
+}
+.c_useName{
+	font-size:36rpx;
+	font-family:PingFang SC;
+	font-weight:bold;
+	color:rgba(51,51,51,1);
+}
+.c_wokes{
+	margin-left: 16rpx;
+	padding: 10rpx 12rpx;
+	background-color: #00216B;
+	font-size:24rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(255,255,255,1);
+	border-radius: 10rpx;
+}
+.storname{
+	width: 100%;
+	padding: 34rpx 0 0 0;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+.stortxt{
+	font-size:32rpx;
+	font-family:PingFang SC;
+	font-weight:bold;
+	color:rgba(51,51,51,1);
+	max-width: 400rpx;
+}
+.f_icon2{
+	font-size: 34rpx;
+	color: rgba(51,51,51,1);
+}
+.rowbox{
+	width: 100%;
+	margin-top: 32rpx;
+}
+.photxt{
+	font-size:26rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(153,153,153,1);
+}
+.addtxt{
+	max-width: 510rpx;
+	display: flex;
+	line-height: 40rpx;
+}
+.addlabel{
+	flex-shrink:0;
+	font-size:26rpx;
+	font-family:PingFang SC;
+	font-weight:500;
+	color:rgba(153,153,153,1);
+}
+.pyqbox{
+	width: 476rpx;
+	height: 54rpx;
+	border:1rpx solid rgba(0,33,107,.4);
+	border-radius:10rpx;
+	margin: 0 auto;
+	margin-top: 37rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:24rpx;
+	font-family:PingFang SC;
+	font-weight:bold;
+	color:rgba(32,65,137,1);
+}
+
+/* 海报盒子样式 */
+.canvas-mask{position: fixed;left: 0;top: 0;z-index:999;width: 100%;height: 100%; background-color: rgba(0,0,0,0.8);}
+.canvas-mask .content{margin: auto;width:694rpx;perspective:2000rpx;}
+.canvas-mask .content .myCanvas{border-radius: 10rpx; width:100%;height:1019rpx;background-color: #fff;position: relative;z-index: 500;}
+.canvas-mask .content .btn{width: 60%;height: 62rpx;background-color: #e53333;color: #fff;font-size: 26rpx;border-radius: 62rpx;text-align: center;line-height: 62rpx;margin-left: auto;margin-right: auto; margin-top: 50rpx;font-family:'ygyxsziti2';}
+.share-box {position: relative;}
+.share-box .btn-share {width: 100%;height: 100%;position: absolute; background: transparent;border: 0;}
+.share-box .btn-share::after{border: 0 !important;}
+#myCanvas{width:574px;height:850px;position: fixed;left: 100%;top: 0;}
+/* 海报盒子样式 */
+@keyframes cagtab{
+	0%{
+		transform: translateX(-100%)
+	}
+	100%{
+		transform: translateX(0)
+	}
+}
+@keyframes cagtab2{
+	0%{
+		transform: translateX(100%)
+	}
+	100%{
+		transform: translateX(0)
+	}
 }

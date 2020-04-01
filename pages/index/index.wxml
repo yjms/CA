@@ -1,4 +1,5 @@
-  <view class="list">
+  <!-- 消息列表 -->
+  <view class="list" wx:if="{{currtab==1}}">
 
     <view class="items" wx:for="{{infoList}}" wx:key="l" bindtap="takeDel" data-obj="{{item}}">
 	  <view class="leftimg" style="background-image:url({{item.client_avatar}})">
@@ -12,3 +13,62 @@
 	</view>
 	
   </view>
+  <!-- 名片盒子 -->
+  <view class="cardbox" wx:if="{{currtab==2}}">
+	<view class="cd_top">
+		<view class="c_leftimg" style="background-image:url({{BASEURL}}/test.png)"></view>
+		<view class="c_rightinfo">
+			<text class="c_useName">{{selfData.name}}</text>
+			<text class="c_wokes" wx:if="{{selfData.position}}">{{selfData.position}}</text>
+		</view>
+	</view>
+	<view class="storname">
+		<text class="stortxt">{{selfData.store}}</text>
+		<text class="f_icon2 iconfont icon-jiantouarrow487"></text>
+	</view>
+
+	<view class="rowbox">
+		<view class="photxt"><text>手机：</text>{{selfData.phone}}</view>
+	</view>
+
+	<view class="rowbox">
+		<view class="photxt"><text>座机：</text>{{selfData.service_tel}}</view>
+	</view>
+
+	<view class="rowbox addtxt">
+		<text class="addlabel">地址：</text>
+		<view class="photxt">{{selfData.address}}</view>
+	</view>
+
+	<view class="pyqbox" bindtap="generate">生成朋友圈图</view>
+  </view>
+  <!-- 底部导航栏切换 -->
+  <view class="footTab">
+  	<view class="f_left" bindtap="changeTab" data-type="1">
+		<text class="f_icon iconfont icon-xiaoxi {{currtab==1?'active':''}}"></text>
+		<text class="f_txt {{currtab==1?'active':''}}">消息</text>	  
+	</view>
+
+  	<view class="f_right" bindtap="changeTab" data-type="2">
+		<text class="r_icon iconfont icon-card {{currtab==2?'active':''}}"></text>
+		<text class="f_txt {{currtab==2?'active':''}}">名片</text>
+	</view>
+  </view>
+  <!-- 名片盒子 -->
+
+<!-- 生成海报盒子 -->
+<view wx:if="{{hbsucc}}">
+	<view class="canvas-mask flex-cen">
+      <view class="content riseShow">
+         <image class="myCanvas {{isPosterOk ? (isIos == 1 ? 'wobble2' : 'wobble') : ''}}"  mode="widthFix" src="{{ posterImgUrl }}"></image>
+         <view class="flex-aro">
+           <view class="btn" bindtap="savePhoto">保存到手机相册</view>
+         </view>
+      </view>
+   </view>
+   <canvas canvas-id="myCanvas" id="myCanvas"></canvas>
+   <showModal showModalOption="{{showModalOption}}" bindoperation="operation"></showModal>
+</view>
+<!-- 生成海报盒子 -->
+
+

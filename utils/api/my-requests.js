@@ -88,7 +88,22 @@ const qylogin = ()=>{
 }
 // 清除消息记录 
 const cleaninfo = (data, url = '/index/index/clean') => { return myRequest(data, url) }
+// 获取二维码
+const getcardImg = (data, url = '/index/index/genQr') => { return myRequest(data, url) }
+//获取手机系统信息
+const getSystem = () => {
+	return new Promise((resolve, reject) => {
+		wx.getSystemInfo({
+			success(res) {
+				resolve(res)
+			},
+			fail(reason) {
+				reject(reason)
+			}
+		})
+	})
 
+}
 module.exports = {
   myRequest,
   getOpenid,
@@ -106,4 +121,6 @@ module.exports = {
   qylogin,
   msgList,
   cleaninfo,
+	getSystem,
+	getcardImg,
 }

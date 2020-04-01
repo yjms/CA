@@ -1,6 +1,7 @@
 // pages/take/takeDel.js
 import tool from "../../../utils/publics/tool.js"
 import https from "../../../utils/api/my-requests.js"
+
 let app = new getApp();
 Page({
 
@@ -21,14 +22,19 @@ Page({
 		img:null, // 发送的类型
 		handimg:null,// 保存用户头像
 		isenter:1,//是不是第一次进来
+		isIponeX:null,// 是不是iphoneX
+		iscurr:true,// 是不是在当前页面
+		from_id:null,//模板id
+		usename:null,//
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		console.log(options)
-		this.setData({ uid: options.uid, to_uid: options.to_uid, client_avatar:options.handimg})
+		console.log(options);
+		this.getPhoneinfo();
+		this.setData({ uid: options.uid, to_uid: options.to_uid, client_avatar: options.handimg, usename: options.useimg})
 		this.msgLog();
 		this.creatSocket();
 	},
@@ -44,14 +50,15 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		this.setData({ isenter:1})
+		this.setData({ isenter: 1,iscurr:true})
+		this.acceptmag();
 	},
 
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */
 	onHide: function () {
-
+		this.setData({ iscurr:false})
 	},
 
 	/**
@@ -102,14 +109,16 @@ Page({
 			data: '{"type":"bind","uid":"'+this.data.uid+'A"}'
 		})
 	},
-	sendMsg(){// 发送消息
+	sendMsg(e){// 发送消息
+		console.log(e);
+		// this.subMsg();
 		let msg = this.data.msg;
 		msg = msg.replace(/^\s+|\s+$/g, '');
 		let msg_type = this.data.img?2:1;
 		if(msg==''&&!this.data.img){
 			tool.alert("输入不能为空");
 		} else { //${this.data.to_uid}
-			let content = `{"type":"send","to_uid":"${this.data.to_uid}","data":{"msg_type":"${msg_type}","content":"${this.data.img ? this.data.img:msg}"}}`; 
+			let content = `{"type":"send","name":"${this.data.usename}","to_uid":"${this.data.to_uid}","data":{"msg_type":"${msg_type}","content":"${this.data.img ? this.data.img:msg}"}}`; 
 			if (this.data.socketOpen) {
 				wx.sendSocketMessage({
 					data: content,
@@ -125,10 +134,10 @@ Page({
 			}
 		}
 	},
-	acceptmag() {//接收信息 is_ob: 1 自己 0 别人  msg_type为接收的信息类型 msg_type:1 为文字 2为图片
+	acceptmag(){//接收信息 is_ob: 1 自己 0 别人  msg_type为接收的信息类型 msg_type:1 为文字 2为图片
 		let self = this;
 		let arr = [];
-		wx.onSocketMessage(function (msg) {
+		wx.onSocketMessage(function (msg){
 			let data = JSON.parse(msg.data);
 			let code =  data.code;
 			let type = data.type;
@@ -136,8 +145,7 @@ Page({
 			if(code!=1)return;
 			switch (type){
 				case 'send':{ //接收发送的信息
-					console.log(self.data.msg_type);
-					arr.push({ content: self.data.img ? self.data.img:self.data.msg, type: 1, is_ob: 0, msg_type:msg_type});
+					arr.push({ content: data.data.content, type: 1, is_ob: 0, msg_type: data.data.msg_type});
 					self.setData({ sendload: [...self.data.sendload, ...arr],msg:'',img:null});
 					console.log(self.data.sendload);
 					self.conutHeg();
@@ -149,6 +157,7 @@ Page({
 					self.setData({ sendload: [...self.data.sendload, ...arr], msg: '', img: null });
 					console.log(self.data.sendload);
 					self.conutHeg();
+					self.cleaninfo();
 					arr = []; 
 					break;
 				}
@@ -166,7 +175,7 @@ Page({
 			if (res.data.code == 1){
 				this.setData({ sendload: [...res.data.data, ...this.data.sendload], havpage: res.data.data.length >= 10 });
 				if (this.data.isenter==1){
-					 this.setscret();
+					  this.conutHeg();
 					 this.setData({isenter:++this.data.isenter})
 				}
 			}
@@ -183,9 +192,6 @@ Page({
 			}
 		})
 	},
-	setscret(){ // 抬起消息列表
-		this.conutHeg();
-	},
 	preview(e){ // 图片预览
 		let arr = [];
 		let currentUrl = e.currentTarget.dataset.src;
@@ -196,20 +202,56 @@ Page({
 			}
 		}	
 		wx.previewImage({
-			current: currentUrl, // 当前显示图片的http链接
-			urls:arr // 需要预览的图片http链接列表
+			current: currentUrl, //当前显示图片的http链接
+			urls:arr //需要预览的图片http链接列表
 		})	
 	},
-	conutHeg(){// 计算滚动高度
+	conutHeg(){//计算滚动高度
+		let baseheg = this.data.isIponeX ? 80 : 60; 
 		setTimeout(()=>{
 			tool.getDom('.infobox').then((res) => {
-				if (res[0].height > wx.getSystemInfoSync().windowHeight) {
+				// console.log(res)
+				if (!res[0])return;
+				if (res[0].height + baseheg > wx.getSystemInfoSync().windowHeight) {
 					wx.pageScrollTo({
-						scrollTop: (res[0].height - wx.getSystemInfoSync().windowHeight + 50),
+						scrollTop: (res[0].height - wx.getSystemInfoSync().windowHeight + baseheg),
 						duration: 100
 					})
 				}
 			})
 		},500)
+	},
+	cleaninfo() { // 清除消息记录
+		let dat = {
+			uid: this.data.uid + 'A',
+			to_uid: this.data.to_uid
+		}
+		https.cleaninfo(dat).then((res) => {
+			console.log(res);
+		}).catch((err) => {
+			console.log(err);
+		})
+	},
+	getPhoneinfo() {//获取手机信息
+		https.getSystem()
+			.then((value) => {
+				console.log("屏幕高度", value.screenHeight);
+				const model = value.model;
+				if (model.search('iPhone X') != -1) {
+					this.setData({
+						isIponeX: true,
+					})
+				} else {
+					this.setData({
+						isIponeX: false,
+					})
+				}
+			})
+	},
+	getFormId(e){
+		let f_id = e.detail.formId;
+		console.log("模板id",f_id);
+		this.setData({ from_id: f_id});
 	}
+	
 })
